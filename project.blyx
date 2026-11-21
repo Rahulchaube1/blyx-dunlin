@@ -1,0 +1,29 @@
+use std::cli;
+use console;
+use dunlin;
+
+fn main() {
+    let argv = cli_args();
+    let count = args_len(argv);
+    if count == 1 && args_at(argv, 0) == "--help" {
+        println!("Audit a table export for duplicate parents and orphaned child rows.");
+        println!("Usage: dunlin parents children");
+        println!("Vector arguments are comma-separated; use [] for an empty vector.");
+        return;
+    }
+    let mut result = [];
+    if count == 0 {
+        result = dunlin_check([1, 1, 3], [1, 2, 2]);
+    } else {
+        if count != 2 { stderr_line("Wrong argument count. Use --help."); process_exit(2); }
+        let parents = console_vector(args_at(argv, 0));
+        let children = console_vector(args_at(argv, 1));
+        result = dunlin_check(parents, children);
+    }
+    if len(result) == 0 { stderr_line("Invalid input for Dunlin. See the package input contract."); process_exit(1); }
+    let mut i = 0;
+    while i < len(result) {
+        println!(at(result, i));
+        i += 1;
+    }
+}
