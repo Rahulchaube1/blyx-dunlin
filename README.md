@@ -1,10 +1,14 @@
-<img src="assets/logo.png" width="112" height="112" alt="Dunlin logo">
+<img src="assets/logo.png" width="112" height="112" alt="A rufous dunlin with a dark belly leans down to inspect the ground.">
 
 # Dunlin
 
 Audit a table export for duplicate parents and orphaned child rows. This Blyx workflow framework is part of the databases and migrations collection.
 
 A child reference can look valid while the parent key is duplicated. Check uniqueness and referential integrity before a bulk import. [PostgreSQL, unique and foreign key constraints](https://www.postgresql.org/docs/current/ddl-constraints.html)
+
+## Editor extension
+
+Install **RahulChaube.blyx-dunlin** to run the worked example and use the framework’s function completions in a Blyx file. Open an empty `.blyx` file, enter `blyx-dunlin-demo`, then choose **Blyx: Run File**. [Editor downloads](https://www.blyx-lang.space/packages/dunlin#editor) · [Download the extension](https://github.com/Rahulchaube1/blyxxxx/releases/download/framework-editors-v0.1.0/blyx-dunlin-0.1.0.vsix) · [Starter with framework source](https://github.com/Rahulchaube1/blyxxxx/releases/download/framework-editors-v0.1.0/blyx-dunlin-starter-0.1.0.zip)
 
 ## Install and run
 
@@ -80,7 +84,7 @@ This release includes identical copies of both library modules so a tagged clone
 
 ## Verification and contributions
 
-The regression suite in [tests.blyx](tests.blyx) checks the example, boundary cases and invalid inputs. Include a short reproducer and your compiler version in [an issue](https://github.com/Rahulchaube1/blyx-dunlin/issues). The source is dual-licensed under [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE). The package artwork uses [Lucide icons](https://lucide.dev/license); see [artwork notices](assets/NOTICE.txt).
+The regression suite in [tests.blyx](tests.blyx) checks the example, boundary cases and invalid inputs. Include a short reproducer and your compiler version in [an issue](https://github.com/Rahulchaube1/blyx-dunlin/issues). The source is dual-licensed under [MIT](LICENSE-MIT) or [Apache-2.0](LICENSE-APACHE). The [artwork notice](assets/NOTICE.txt) records credits for earlier editions.
 
 ## Connect with Rahul Chaube
 

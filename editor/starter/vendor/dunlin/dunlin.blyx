@@ -1,0 +1,49 @@
+use keyduplicates;
+use foreignmiss;
+
+fn dunlin_finite(values: vector) -> bool {
+    let mut i = 0;
+    while i < len(values) {
+        let value = at(values, i);
+        if !(value - value == 0.0) {
+            return false;
+        }
+        i += 1;
+    }
+    true
+}
+
+fn dunlin_integers(values: vector) -> bool {
+    let mut i = 0;
+    while i < len(values) {
+        let value = at(values, i);
+        if !(value >= -9007199254740991.0 && value <= 9007199254740991.0 && value % 1.0 == 0.0) {
+            return false;
+        }
+        i += 1;
+    }
+    true
+}
+
+fn dunlin_compute(parents: vector, children: vector) -> vector {
+    let dup = keyduplicates_count(parents);
+    let missing = foreignmiss_count(parents, children);
+    if len(dup) == 0 || len(missing) == 0 {
+        return [];
+    }
+    let mut ok = 0;
+    if at(dup, 0) == 0.0 && at(missing, 0) == 0.0 {
+        ok = 1;
+    }
+    [ok, at(dup, 0), at(missing, 0), at(missing, 1)]
+}
+
+// Audit a table export for duplicate parents and orphaned child rows.
+// Returns [load acceptable, duplicate parent rows, orphan child rows, first orphan row]. This local check complements database-enforced constraints.
+pub fn dunlin_check(parents: vector, children: vector) -> vector {
+    if !dunlin_integers(parents) { return []; }
+    if !dunlin_integers(children) { return []; }
+    let result = dunlin_compute(parents, children);
+    if !dunlin_finite(result) { return []; }
+    result
+}
